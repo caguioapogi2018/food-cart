@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Food-Cart</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Home', root_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Create Food', new_food_path %></li>
+        <% end %>
+      <li><%= link_to 'View all Food Post', foods_path %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <li><%= link_to "Log-out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+        <li><%= link_to "Log-in", new_user_session_path%></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
