@@ -1,10 +1,13 @@
 
 <div class="container">
-  <h2><center>Food Details</center></h2>
+
 
   <table class="table">
     <thead>
-    <tr>
+    <tr class="success">
+      <th colspan="5"><h2><center>Food Details</center></h2></th>
+    </tr>
+    <tr class="success">
       <th>TITLE</th>
       <th>CATEGORY</th>
       <th>DESCRIPTION</th>
@@ -13,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="success", align="center">
+    <tr class="active", align="center">
       <td><%= @food.title %></td>
       <td><%= @food.category %></td>
       <td><%= @food.description %></td>
@@ -23,5 +26,5 @@
 
     </tbody>
   </table>
-  <center><%= link_to 'Back to index', root_path %></center>
+  <center><%= link_to 'Back to index', root_path, class:'btn btn-primary' %></center>
 </div>
