@@ -1,7 +1,6 @@
 class FoodsController < ApplicationController
-
   before_action :food_id, only:[:show, :edit, :update]
-
+  before_action :req_same_user, only:[ :edit, :destroy]
 
   def index
     @foods = Food.all
@@ -22,9 +21,15 @@ class FoodsController < ApplicationController
         render :new
       end
   end
+
   def show
 
   end
+
+  def edit
+
+  end
+
 
   def update
     if @food.update(food_params)
@@ -48,6 +53,13 @@ class FoodsController < ApplicationController
 
   def food_id
     @food = Food.find(params[:id])
+  end
+
+  def req_same_user
+    if current_user != @food.user
+      flash[:warning] = " not verified"
+      redirect_to root_path
+    end
   end
 
 
