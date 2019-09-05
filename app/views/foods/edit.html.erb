@@ -1,0 +1,22 @@
+<h1> Edit Food Post</h1>
+<div class="form">
+  <div class='col-xs-12'>
+    <%= form_for @food do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Enter title", autofocus: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :type %>
+        <%= f.select :category, options_for_select([["Meat Food", "Meat Food"], ["Vegetable Food", "Vegetable Food"], ["Vegetable & Meat Food", "Vegetable & Meat Food"]]), class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control", placeholder: "Enter email", autofocus: true %>
+      </div>
+      <center><%= f.submit %></center>
+    <% end %>
+  </div>
+</div>
+
+

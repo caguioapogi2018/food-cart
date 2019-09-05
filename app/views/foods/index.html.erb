@@ -1,20 +1,43 @@
-<h1> LIST OF FOODS </h1>
+<h1><center> LIST OF FOODS </center></h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Category</th>
-      <th>Description</th>
+
+<div class="container">
+  <h2><center>Food Details</center></h2>
+
+  <table class="table">
+    <thead>
+    <tr class="success">
+      <th>TITLE</th>
+      <th>CATEGORY</th>
+      <th>DESCRIPTION</th>
+      <th>POST BY</th>
+      <th>DATE CREATED</th>
+      <th>DATE UPDATED</th>
+      <th>Actions</th>
+
     </tr>
-  </thead>
-  <tbody>
-  <%= @foods.each do |food|%>
-    <tr>
+    </thead>
+    <tbody>
+
+    <% @foods.each do |food|%>
+    <tr class="active", align="center">
       <td><%= food.title %></td>
       <td><%= food.category %></td>
       <td><%= food.description %></td>
+      <td><%= food.user.email %></td>
+      <td>Created:<%= time_ago_in_words(food.created_at) %> ago</td>
+      <td>Updated: <%= time_ago_in_words(food.updated_at) %> ago</td>
+      <td>
+        <%= link_to 'SHOW', food_path(food), class: "btn btn-xs btn-primary" %>
+        <% if food.user.id == current_user.id %>
+        <%= link_to 'DELETE', food_path(food), method: :delete, data: { confirm: 'are you sure?'},class: "btn btn-xs btn-danger"  %>
+          <%= link_to 'EDIT', edit_food_path(food),class: "btn btn-xs btn-success" %>
+        <% end %>
+      </td>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+
+    <% end %>
+    </tbody>
+  </table>
+  <center><%= will_paginate %></center>
+</div>

@@ -1,24 +1,26 @@
+<%= render 'shared/errors', obj:@food %>
 <h1>
   <center>Create Food Post</center>
 </h1>
-<div class="panel">
+<div class="form">
+  <div class='col-xs-12'>
   <%= form_for @food do |f| %>
-    <center>
       <div class="form-group">
-          <%= f.label :title %>
-        <%= f.text_field :title %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Enter title", autofocus: true %>
+
       </div>
-      <div class="form-group">
-        <%= f.select :category, options_for_select([["Meat Food", "Meat Food"], ["Vegetable Food", "Vegetable Food"]]) %>
+        <div class="form-group">
+          <%= f.label :type %>
+         <%= f.select :category, options_for_select([["Meat Food", "Meat Food"], ["Vegetable Food", "Vegetable Food"], ["Vegetable & Meat Food", "Vegetable & Meat Food"]]), class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :description %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, class: "form-control", placeholder: "Enter email", autofocus: true %>
       </div>
-      <div class="form-group">
-        <%= f.submit %>
-      </div>
-    </center>
+      <center><%= f.submit "Create Food",class: 'btn btn-primary btn-lg'%></center>
   <% end %>
-
+  </div>
 </div>
+
+

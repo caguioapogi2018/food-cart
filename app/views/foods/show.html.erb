@@ -1,0 +1,27 @@
+
+<div class="container">
+  <h2><center>Food Details</center></h2>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>TITLE</th>
+      <th>CATEGORY</th>
+      <th>DESCRIPTION</th>
+      <th>DATE CREATED</th>
+      <th>DATE UPDATED</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="success", align="center">
+      <td><%= @food.title %></td>
+      <td><%= @food.category %></td>
+      <td><%= @food.description %></td>
+      <td>Created time: <%= time_ago_in_words(@food.created_at) %> ago</td>
+      <td>Updated time: <%= time_ago_in_words(@food.updated_at) %> ago</td>
+    </tr>
+
+    </tbody>
+  </table>
+  <center><%= link_to 'Back to index', root_path %></center>
+</div>

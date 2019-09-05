@@ -4,13 +4,16 @@
       <a class="navbar-brand" href="#">Food-Cart</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><%= link_to 'Home', root_path %></li>
       <% if user_signed_in? %>
+      <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Create Food', new_food_path %></li>
-        <% end %>
       <li><%= link_to 'View all Food Post', foods_path %></li>
+      <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <% if current_user %>
+      <li><a href=""><%= current_user.email %></a></li>
+        <% end  %>
     <% if user_signed_in? %>
       <li><%= link_to "Log-out", destroy_user_session_path, method: :delete %></li>
         <% else %>
