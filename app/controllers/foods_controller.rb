@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :food_id, only:[:show, :edit, :update]
+  before_action :food_id, only:[:show, :edit, :update, :destroy, :req_same_user]
   before_action :req_same_user, only:[ :edit, :destroy]
 
   def index
@@ -15,7 +15,7 @@ class FoodsController < ApplicationController
       @food = Food.create(food_params)
       @food.user_id = current_user.id
       if @food.save
-        flash[:success] = "the food was successful saved"
+        flash[:success] = "The food was successful saved"
         redirect_to root_path
       else
         render :new
@@ -40,8 +40,11 @@ class FoodsController < ApplicationController
 
   def destroy
     @food =  current_user.foods.find(params[:id])
-    @food.destroy
-    redirect_to root_path
+    if @food.destroy
+      flash[:success] = "The content was successfully deleted"
+      redirect_to root_path
+    end
+
 
   end
 
@@ -57,7 +60,7 @@ class FoodsController < ApplicationController
 
   def req_same_user
     if current_user != @food.user
-      flash[:warning] = " not verified"
+      flash[:warning] = "Restricted Access "
       redirect_to root_path
     end
   end
