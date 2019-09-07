@@ -1,12 +1,13 @@
 <div class="container">
 
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
     <tr class="success">
-      <th colspan="7"><h2><center>Food Details</center></h2></th>
+      <th colspan="8"><h2><center>Food Details</center></h2></th>
     </tr>
 
     <tr class="success">
+      <th>ID</th>
       <th>TITLE</th>
       <th>CATEGORY</th>
       <th>DESCRIPTION</th>
@@ -17,10 +18,11 @@
 
     </tr>
     </thead>
-    <tbody>
+    <tbody class="table table-hover">
 
     <% @foods.each do |food|%>
     <tr class="active", align="center">
+      <td><%= food.id %></td>
       <td><%= food.title %></td>
       <td><%= food.category %></td>
       <td><%= food.description %></td>
