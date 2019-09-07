@@ -1,1 +1,38 @@
 <h1><center>FAVORITES</center></h1>
+
+
+<table class="table">
+  <thead>
+  <tr class="success">
+    <th colspan="7"><h2><center>Food Details</center></h2></th>
+  </tr>
+
+  <tr class="success">
+    <th>TITLE</th>
+    <th>CATEGORY</th>
+    <th>DESCRIPTION</th>
+    <th>POST BY</th>
+    <th>DATE CREATED</th>
+    <th>DATE UPDATED</th>
+    <th>Actions</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @favorites.each do |favorite|%>
+    <tr class="active", align="center">
+      <td><%= favorite.food.title %></td>
+      <td><%= favorite.food.category %></td>
+      <td><%= favorite.food.description %></td>
+      <td><%= favorite.user.email %></td>
+      <td>Created:<%= time_ago_in_words(favorite.food.created_at) %> ago</td>
+      <td>Updated: <%= time_ago_in_words(favorite.food.updated_at) %> ago</td>
+      <td>
+        <%= link_to 'REMOVE CART', fav_path(favorite), method: :delete, class: "btn btn-xs btn-danger" %>
+    </tr>
+  <% end %>
+
+
+  </tbody>
+</table>

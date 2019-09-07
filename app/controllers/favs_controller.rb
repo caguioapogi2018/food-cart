@@ -1,12 +1,16 @@
 class FavsController < ApplicationController
 
+  before_action only:[:destroy]
+
   def index
+    # @favorites = Favorite.all
+    @favorites = current_user.favorites
 
   end
 
   def new
-    @food = Food.find(params[:food_id])
-    @fav = current_user.foods.new
+    # @food = Food.find(params[:food_id])
+    # @fav = current_user.foods.new
   end
 
   def create
@@ -17,7 +21,18 @@ class FavsController < ApplicationController
     #   flash[:success] = "Add to new Favorite food"
     #   redirect_to root_path
     # end
+    #
+    #
   end
+  def destroy
+    @favorite = current_user.favorites.find(params[:id])
+    if @favorite.destroy
+      flash[:success] = "You have successfully deleted a favorite"
+      redirect_to favs_path
+    end
+  end
+
+
 
   def add_favorites
     @food = Food.find(params[:id])
@@ -26,12 +41,14 @@ class FavsController < ApplicationController
       flash[:success] = "Add to new Favorite food"
       redirect_to root_path
     end
+
+
   end
 
   private
 
-  def get_id
-  end
-
+    def favorite_id
+      @favorite = Favorite.find(params[:id])
+    end
 
 end

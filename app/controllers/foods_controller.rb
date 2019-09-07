@@ -39,13 +39,12 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-    @food =  current_user.foods.find(params[:id])
+    @food = food_id
+    @food.user = current_user
     if @food.destroy
       flash[:success] = "The content was successfully deleted"
       redirect_to root_path
     end
-
-
   end
 
   private

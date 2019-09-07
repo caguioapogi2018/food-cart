@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :foods, dependent: :destroy #this is for create food post
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :foods, through: :favorites
 
 

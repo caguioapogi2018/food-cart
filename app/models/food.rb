@@ -2,7 +2,7 @@ class Food < ApplicationRecord
 
   belongs_to :user
 
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
 
   validates :title, presence: true, length:{minimum: 2, maximum: 20}
