@@ -3,8 +3,8 @@ class FoodsController < ApplicationController
   before_action :req_same_user, only:[ :edit, :destroy]
 
   def index
-    @foods = Food.all
-    @foods = Food.paginate(page:params[:page], per_page:6)
+    @foods = Food.includes(:user).paginate(page:params[:page], per_page:6)
+    # @foods = Food.paginate(page:params[:page], per_page:6)
   end
 
   def new
@@ -52,6 +52,7 @@ class FoodsController < ApplicationController
   def food_params
     params.require(:food).permit(:title, :category, :description)
   end
+
 
   def food_id
     @food = Food.find(params[:id])

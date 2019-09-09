@@ -36,13 +36,13 @@ class FavsController < ApplicationController
 
 
   def add_favorites
+
     @food = Food.find(params[:id])
     @fav = Favorite.new(user: current_user, food_id: params[:id])
     if @fav.save
       flash[:success] = "Add to new Favorite food"
       redirect_to root_path
     end
-
 
   end
 
@@ -51,5 +51,6 @@ class FavsController < ApplicationController
     def favorite_id
       @favorite = Favorite.find(params[:id])
     end
+
 
 end

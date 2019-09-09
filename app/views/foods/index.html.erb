@@ -23,7 +23,7 @@
     <% @foods.each do |food|%>
     <tr class="active", align="center">
       <td><%= food.id %></td>
-      <td><%= food.title %></td>
+      <td><b><%= food.title %></b></td>
       <td><%= food.category %></td>
       <td><%= food.description %></td>
       <td><%= food.user.email %></td>
@@ -37,7 +37,11 @@
         <%= link_to 'DELETE', food_path(food), method: :delete, data: { confirm: 'are you sure?'},class: "btn btn-xs btn-danger"  %>
           <%= link_to 'EDIT', edit_food_path(food),class: "btn btn-xs btn-success" %>
           <% else %>
-          <%= link_to 'ADD', add_fav_path(food), class: "btn btn-xs btn-primary"%>
+              <% if !Favorite.where(food_id: food.id).exists?  %>
+              <%= link_to 'ADD CART', add_fav_path(food), class: "btn btn-xs btn-primary"%>
+              <% else %>
+              <%= "Added to Cart" %>
+              <% end %>
         <% end %>
       </td>
     </tr>
