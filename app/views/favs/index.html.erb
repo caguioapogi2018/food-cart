@@ -1,10 +1,8 @@
-<h1><center>FAVORITES</center></h1>
-
-
-<table class="table">
+<div class="container">
+<table class="table table-bordered">
   <thead>
   <tr class="success">
-    <th colspan="7"><h2><center>Food Details</center></h2></th>
+    <th colspan="8"><h2><center>Add-Cart Details</center></h2></th>
   </tr>
 
   <tr class="success">
@@ -18,7 +16,7 @@
 
   </tr>
   </thead>
-  <tbody>
+  <tbody class="table table-hover">
 
   <% @favorites.each do |favorite|%>
     <tr class="active", align="center">
@@ -29,10 +27,11 @@
       <td>Created:<%= time_ago_in_words(favorite.food.created_at) %> ago</td>
       <td>Updated: <%= time_ago_in_words(favorite.food.updated_at) %> ago</td>
       <td>
-        <%= link_to 'REMOVE CART', fav_path(favorite), method: :delete, class: "btn btn-xs btn-danger" %>
+        <%= link_to 'REMOVE CART', fav_path(favorite), method: :delete, data: { confirm: 'Are you sure to delete this cart?'},class: "btn btn-xs btn-danger" %>
     </tr>
   <% end %>
 
 
   </tbody>
 </table>
+</div>

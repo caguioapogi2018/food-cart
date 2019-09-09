@@ -1,6 +1,6 @@
 class FavsController < ApplicationController
 
-  before_action only:[:destroy]
+  before_action :favorite_id, only:[:destroy]
 
   def index
     # @favorites = Favorite.all
@@ -25,7 +25,8 @@ class FavsController < ApplicationController
     #
   end
   def destroy
-    @favorite = current_user.favorites.find(params[:id])
+    @favorite = favorite_id
+    @favorite.user = current_user
     if @favorite.destroy
       flash[:success] = "You have successfully deleted a favorite"
       redirect_to favs_path
