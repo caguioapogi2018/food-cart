@@ -38,9 +38,9 @@
           <%= link_to 'EDIT', edit_food_path(food),class: "btn btn-xs btn-success" %>
           <% else %>
               <% if !Favorite.where(food_id: food.id).exists?  %>
-              <%= link_to 'ADD CART', add_fav_path(food), class: "btn btn-xs btn-primary"%>
+              <%= link_to 'ADD TO FAVORITES', add_fav_path(food), class: "btn btn-xs btn-primary"%>
               <% else %>
-              <%= "Added to Cart" %>
+              <%= "Added to Favorites" %>
               <% end %>
         <% end %>
       </td>

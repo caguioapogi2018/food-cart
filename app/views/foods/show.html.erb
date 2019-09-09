@@ -2,31 +2,39 @@
 <div class="container">
 
 
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
-    <tr class="success">
-      <th colspan="5"><h2><center>Food Details</center></h2></th>
+    <tr class="active">
+      <th colspan="6"><h2><center>Food Details</center></h2></th>
     </tr>
     <tr class="success">
       <th>TITLE</th>
       <th>CATEGORY</th>
       <th>DESCRIPTION</th>
+      <th>POST BY</th>
       <th>DATE CREATED</th>
       <th>DATE UPDATED</th>
     </tr>
     </thead>
     <tbody>
-    <tr class="active", align="center">
+    <tr class="success", align="center">
       <td><%= @food.title %></td>
       <td><%= @food.category %></td>
       <td><%= @food.description %></td>
+      <td><%= @food.user.email %></td>
       <td>Created time: <%= time_ago_in_words(@food.created_at) %> ago</td>
       <td>Updated time: <%= time_ago_in_words(@food.updated_at) %> ago</td>
     </tr>
 
     </tbody>
+
+    <tfoot>
+    <tr class="active">
+      <td colspan="6"><center><%= link_to 'Back to index', root_path, class:'btn btn-primary' %></center></td>
+    </tr>
+    </tfoot>
   </table>
-  <center><%= link_to 'Back to index', root_path, class:'btn btn-primary' %></center>
+
 
 
 </div>
