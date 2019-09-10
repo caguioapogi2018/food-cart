@@ -1,8 +1,8 @@
 <div class="container">
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
     <tr class="success">
-      <th colspan="8"><h2><center>Food Details</center></h2></th>
+      <th colspan="9"><h2><center>Food Details</center></h2></th>
     </tr>
 
     <tr class="success">
@@ -13,11 +13,12 @@
       <th>POST BY</th>
       <th>DATE CREATED</th>
       <th>DATE UPDATED</th>
+      <th>FAVORITE COUNT</th>
       <th>Actions</th>
 
     </tr>
     </thead>
-    <tbody class="table table-hover">
+    <tbody class="table">
 
     <% @foods.each do |food|%>
     <tr class="active", align="center">
@@ -28,16 +29,18 @@
       <td><%= food.user.email %></td>
       <td>Created:<%= time_ago_in_words(food.created_at) %> ago</td>
       <td>Updated: <%= time_ago_in_words(food.updated_at) %> ago</td>
+      <td><%= food.favorites.size %> Added</td>
       <td>
         <%= link_to 'SHOW', food_path(food), class: "btn btn-xs btn-primary" %>
         <% if food.user.id == current_user.id %>
         <%= link_to 'DELETE', food_path(food), method: :delete, data: { confirm: 'are you sure?'},class: "btn btn-xs btn-danger"  %>
           <%= link_to 'EDIT', edit_food_path(food),class: "btn btn-xs btn-success" %>
           <% else %>
-              <% if !Favorite.where(food_id: food.id).exists?  %>
-              <%= link_to 'ADD TO FAVORITES', add_fav_path(food), class: "btn btn-xs btn-primary"%>
+              <% if Favorite.where(user_id: current_user, food_id: food.id).exists?  %>
+            <%= "Added to Favorites" %>
               <% else %>
-              <%= "Added to Favorites" %>
+            <%= link_to 'ADD TO FAVORITES', add_fav_path(food), class: "btn btn-xs btn-primary"%>
+
               <% end %>
         <% end %>
       </td>
