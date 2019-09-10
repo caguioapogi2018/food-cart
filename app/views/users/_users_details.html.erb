@@ -1,0 +1,39 @@
+<table class="table table-bordered table-hover">
+  <thead>
+  <tr class="success">
+    <th colspan="8"><h4><center>Users Details</center></h4></th>
+  </tr>
+
+  <tr class="success">
+    <th>ID</th>
+    <th>EMAIL</th>
+    <th>PASSWORD</th>
+    <th>DATE CREATED</th>
+    <th>DATE UPDATED</th>
+    <th>Actions</th>
+
+  </tr>
+  </thead>
+  <tbody class="table table-hover">
+
+  <% users.each do |user|%>
+    <tr class="active", align="center">
+      <td><%= user.id %></td>
+      <td><b><%= user.email %></b></td>
+      <td><%= user.encrypted_password %></td>
+
+      <td>Created:<%= time_ago_in_words(user.created_at) %> ago</td>
+      <td>Updated: <%= time_ago_in_words(user.updated_at) %> ago</td>
+      <td>
+        <%= link_to 'DELETE', user_path(user), method: :delete, data: { confirm: 'are you sure?'},class: "btn btn-xs btn-danger"  %>
+        <%= link_to 'EDIT', edit_user_registration_path(user),class: "btn btn-xs btn-success" %>
+        <%= link_to 'MAKE ADMIN', user_path(user.id), method: :patch,data: { confirm: 'are you sure?'}, class: "btn btn-xs btn-success" %>
+        <%#=click me, current_user.update_attribute :admin, true %>
+
+
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!--  <center><%#= will_paginate %></center>-->

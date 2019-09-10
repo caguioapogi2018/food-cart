@@ -1,5 +1,4 @@
 <div class="container">
-
   <table class="table table-bordered">
     <thead>
     <tr class="success">
@@ -31,8 +30,6 @@
       <td>Updated: <%= time_ago_in_words(food.updated_at) %> ago</td>
       <td>
         <%= link_to 'SHOW', food_path(food), class: "btn btn-xs btn-primary" %>
-
-
         <% if food.user.id == current_user.id %>
         <%= link_to 'DELETE', food_path(food), method: :delete, data: { confirm: 'are you sure?'},class: "btn btn-xs btn-danger"  %>
           <%= link_to 'EDIT', edit_food_path(food),class: "btn btn-xs btn-success" %>
@@ -45,7 +42,6 @@
         <% end %>
       </td>
     </tr>
-
     <% end %>
     </tbody>
   </table>

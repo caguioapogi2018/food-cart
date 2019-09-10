@@ -5,6 +5,7 @@ class FoodsController < ApplicationController
   def index
     @foods = Food.includes(:user).paginate(page:params[:page], per_page:6)
     # @foods = Food.paginate(page:params[:page], per_page:6)
+
   end
 
   def new

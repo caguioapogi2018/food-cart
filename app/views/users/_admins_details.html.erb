@@ -1,0 +1,45 @@
+
+<table class="table table-bordered table-hover">
+  <thead>
+  <tr class="success">
+    <th colspan="8"><h4><center>Admin Details</center></h4></th>
+  </tr>
+
+  <tr class="success">
+    <th>ID</th>
+    <th>EMAIL</th>
+    <th>PASSWORD</th>
+    <th>DATE CREATED</th>
+    <th>DATE UPDATED</th>
+    <th>Actions</th>
+
+  </tr>
+  </thead>
+  <tbody class="table table-hover">
+
+  <% admins.each do |user|%>
+    <tr class="active", align="center">
+      <td><%= user.id %></td>
+      <td><b><%= user.email %></b></td>
+      <td><%= user.encrypted_password %></td>
+
+      <td>Created:<%= time_ago_in_words(user.created_at) %> ago</td>
+      <td>Updated: <%= time_ago_in_words(user.updated_at) %> ago</td>
+      <td>
+        <%= link_to 'MAKE USER', user_path(user.id), method: :patch,data: { confirm: 'are you sure?'}, class: "btn btn-xs btn-success" %>
+        <%# if food.user.id == current_user.id %>
+        <%#= link_to 'DELETE', food_path(food), method: :delete, data: { confirm: 'are you sure?'},class: "btn btn-xs btn-danger"  %>
+        <%#= link_to 'EDIT', edit_food_path(food),class: "btn btn-xs btn-success" %>
+        <%# else %>
+        <%# if !Favorite.where(food_id: food.id).exists?  %>
+        <%#= link_to 'ADD TO FAVORITES', add_fav_path(food), class: "btn btn-xs btn-primary"%>
+        <%# else %>
+        <%#= "Added to Favorites" %>
+        <%# end %>
+        <%# end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!--  <center><%#= will_paginate %></center>-->
