@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 
     def update
       if @user.toggle!(:admin)
-        flash[:success] = "UPDATED"
-        redirect_to users_path
+        flash[:success] = "THIS ACCOUNT WAS SUCCESSSFULLY UPDATED"
+        redirect_to foods_path
       end
     end
 

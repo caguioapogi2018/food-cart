@@ -1,18 +1,19 @@
 <div class="container">
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
   <thead>
   <tr class="success">
-    <th colspan="8"><h2><center>Add-Cart Details</center></h2></th>
+    <th colspan="8"><h3><center>Favorite Details</center></h3></th>
   </tr>
 
   <tr class="success">
-    <th>TITLE</th>
-    <th>CATEGORY</th>
-    <th>DESCRIPTION</th>
-    <th>POST BY</th>
-    <th>DATE CREATED</th>
-    <th>DATE UPDATED</th>
-    <th>Actions</th>
+    <th><h5>ID</h5></th>
+    <th><h5>TITLE</th>
+    <th><h5>CATEGORY</h5></th>
+    <th><h5>DESCRIPTION</h5></th>
+    <th><h5>OWNER</h5></th>
+    <th><h5>DATE CREATED</h5></th>
+    <th><h5>DATE UPDATED</h5></th>
+    <th><h5>ACTIONS</h5></th>
 
   </tr>
   </thead>
@@ -20,10 +21,11 @@
 
   <% @favorites.each do |favorite|%>
     <tr class="active", align="center">
+      <td><%= favorite.food.id %></td>
       <td><%= favorite.food.title %></td>
       <td><%= favorite.food.category %></td>
       <td><%= favorite.food.description %></td>
-      <td><%= favorite.user.email %></td>
+      <td><%= favorite.food.user.email %></td>
       <td>Created:<%= time_ago_in_words(favorite.food.created_at) %> ago</td>
       <td>Updated: <%= time_ago_in_words(favorite.food.updated_at) %> ago</td>
       <td>
